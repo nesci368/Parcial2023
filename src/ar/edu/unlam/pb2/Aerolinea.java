@@ -1,14 +1,22 @@
 package ar.edu.unlam.pb2;
 
+import java.util.ArrayList;
+
+
+
+
 public class Aerolinea {
 	
 	private String nombreAero;
 	private Integer id = 0;
-	
+	private ArrayList<Vuelo> vuelos;
+	private ArrayList<Avion> aviones;
 	public Aerolinea(String nombreAero) {
-	// TODO Auto-generated constructor stub
-		this.nombreAero = nombreAero;
 	
+		
+		this.nombreAero = nombreAero;
+		this.vuelos = new ArrayList<>();
+		this.aviones = new ArrayList<>();
 	}
 
 	/**
@@ -39,5 +47,32 @@ public class Aerolinea {
 		this.id = id;
 	}
 
+	public void agregarVuelo(Vuelo vuelo) {
+		this.vuelos.add(vuelo);
+		
+	}
+
+	public void agregarAvion(Avion avion, Integer vueloId) {
+		
+		Vuelo vueloEncontrado = buscarVueloPorId(vueloId);
+
+		if (vueloEncontrado != null) {
+			vueloEncontrado.setAvion(avion);
+			this.aviones.add(avion);
+			vueloEncontrado.setCosasListas((vueloEncontrado.getCosasListas()) + 1);
+		
+		}
+
 	
+	}
+
+	public Vuelo buscarVueloPorId(Integer idVuelo) {
+		for (Vuelo vuelo : vuelos) {
+			if (vuelo.getId().equals(idVuelo)) {
+				return vuelo;
+			}
+		}
+
+		return null;
+	}
 }

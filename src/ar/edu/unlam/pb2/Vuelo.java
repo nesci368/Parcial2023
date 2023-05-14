@@ -11,7 +11,11 @@ public class Vuelo {
 	private String destino;
 	private String origen;
 	private Integer id = 0;
+	private Avion avion;
+	private Integer cosasListas = 0;
+	
 
+	
 	public Vuelo(Integer nro, LocalDate fecha, LocalTime hora, String origen, String destino) {
 		// TODO Auto-generated constructor stub
 		
@@ -24,7 +28,20 @@ public class Vuelo {
 		
 		
 	}
+	
+	public Integer getCosasListas() {
+		return cosasListas;
+	}
+	public void setCosasListas(Integer cosasListas) {
+		this.cosasListas = cosasListas;
+	}
+	public Avion getAvion() {
+		return avion;
+	}
 
+	public void setAvion(Avion avion) {
+		this.avion = avion;
+	}
 	/**
 	 * @return the nroDeVuelo
 	 */
@@ -102,6 +119,7 @@ public class Vuelo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	
 	
 
