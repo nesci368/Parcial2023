@@ -51,4 +51,34 @@ public class AerolineaTest {
 		assertEquals(idVuelo, vuelo.getId());
 	}
 	
+	@Test
+	public void queAVueloSeLePuedaAsignarUnAvion() {
+		
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		
+		Integer nroDeAvion = 520;
+		String modelo = "Boing 747";
+		String fabricante = "Airbuss";
+		Integer capacidad = 200;
+		Integer fila = 10;
+		Integer columna = 20;
+		
+		Avion avion = new Avion(nroDeAvion, modelo, fabricante,fila,columna,capacidad);
+		
+		Vuelo vuelo = new Vuelo(nro,fecha,hora,origen,destino);
+		
+		String nombre = "Despegar";
+		
+		Aerolinea aerolinea = new Aerolinea(nombre);
+		
+		aerolinea.agregarVuelo(vuelo);
+		
+		aerolinea.agregarAvion(avion,vuelo.getId());
+		
+		assertEquals(avion, aerolinea.buscarVueloPorId(vuelo.getId()).getAvion());
+	}
 }
