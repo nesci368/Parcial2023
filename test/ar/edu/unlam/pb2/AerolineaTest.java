@@ -15,6 +15,8 @@ import org.junit.Test;
 
 
 
+
+
 public class AerolineaTest {
 
 	
@@ -253,6 +255,48 @@ public class AerolineaTest {
 	}
 	
 	@Test
+	public void queSePuedaSubirAUnPasajeroAlVuelo() {
+		
+		ArrayList<Pasajero>pasajeros = new ArrayList<>();
+		for(int i = 0; i <= 20; i++) {
+			pasajeros.add(new Pasajero(true, 2000000.0));
+			
+		}
+			String nombre = "Despegar";
+			
+			
+			Aerolinea aerolinea = new Aerolinea(nombre);
+			String origen = "Buenos Aires";
+			String destino = "Cancun";
+			Integer nro = 12;
+			LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+			LocalTime hora = LocalTime.of(9, 30);
+			Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+			Integer nroDeAvion = 520;
+			String modelo = "Boing 747";
+			String fabricante = "Airbuss";
+			Integer capacidad = 200;
+			Integer fila = 10;
+			Integer columna = 20;
+			Avion avion = new Avion(nroDeAvion, modelo, fabricante, fila, columna, capacidad);
+
+			aerolinea.agregarVuelo(vuelo);
+			aerolinea.agregarAvion(avion, vuelo.getId());
+			
+			
+			for(Pasajero pasajero : pasajeros) {
+				aerolinea.agregarPasajeros(pasajero);
+			}
+			
+			aerolinea.comprarVuelo(pasajeros.get(0), vuelo, 1, 1);
+			aerolinea.comprarVuelo(pasajeros.get(1), vuelo, 1, 2);
+			
+			assertTrue(aerolinea.subirPasajeros(vuelo));
+			
+		}
+
+	
+	@Test
 	public void queAUnpasajeroSeLeAsigneUnAsientoDeVueloSiHayAsientoDisponible() {
 		Boolean pasaporte = true;
 		
@@ -280,4 +324,6 @@ public class AerolineaTest {
 		assertTrue(avion.sentarPasajeros(pasajero));
 		
 	}
+	
+	
 }

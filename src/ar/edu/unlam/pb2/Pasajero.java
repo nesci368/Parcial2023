@@ -26,7 +26,7 @@ public class Pasajero {
 	}
 
 	public Pasajero(Boolean pasaporte, Double dineroDisponible) {
-		this.pasaporte = pasaporte;
+		this.setPasaporte(pasaporte);
 		this.dineroDisponible = dineroDisponible;
 	}
 
@@ -49,6 +49,10 @@ public class Pasajero {
 		this.vueloComprado  = vueloComprado;
 	}
 	
+	public Integer getVueloComprado() {
+		return vueloComprado;
+	}
+	
 	public Boolean validarDatosDelPasajeroParaQuePuedaRegistrarse(Pasajero usuarios) {
 		
 		for (int i = 0; i < eMail.length(); i++) {
@@ -65,6 +69,14 @@ public class Pasajero {
 			return false;
 		}
 		
+	}
+
+	public Boolean getPasaporte() {
+		return pasaporte;
+	}
+
+	public void setPasaporte(Boolean pasaporte) {
+		this.pasaporte = pasaporte;
 	}
 	
 	

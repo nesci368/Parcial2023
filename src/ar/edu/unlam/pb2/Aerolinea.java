@@ -12,6 +12,7 @@ public class Aerolinea {
 	private ArrayList<Vuelo> vuelos;
 	private ArrayList<Avion> aviones;
 	private ArrayList<Personal>personalCompania;
+	private ArrayList<Pasajero>pasajeros;
 	private Personal[] pilotos = new Piloto[2];
 	private final Double precioPremium = 700000.0;
 	private final Double precioComercial = 450000.0;
@@ -23,6 +24,7 @@ public class Aerolinea {
 		this.vuelos = new ArrayList<>();
 		this.aviones = new ArrayList<>();
 		this.personalCompania = new ArrayList<>();
+		this.pasajeros = new ArrayList<>();
 	}
 
 	/**
@@ -207,5 +209,41 @@ public class Aerolinea {
 		
 		
 		return false;
+	}
+
+	public void agregarPasajeros(Pasajero pasajero) {
+		// TODO Auto-generated method stub
+		this.pasajeros.add(pasajero);
+		
+	}
+
+	public Boolean subirPasajeros(Vuelo vuelo) {
+		
+		Vuelo vueloEncontrado = buscarVueloPorId(vuelo.getId());
+		Integer posicion = 0;
+		
+		Boolean estado = false;
+		
+		for(Vuelo vueloBuscado : vuelos) {
+			if(vueloBuscado.getId() == vueloEncontrado.getId()) {
+				break;
+			}
+			
+			posicion++;
+		}
+		for(Pasajero pasajero : this.pasajeros) {
+			if(pasajero.getPasaporte()) {
+				if(pasajero.getVueloComprado() == vuelos.get(posicion).getId()) {
+					vuelos.get(posicion).getAvion().sentarPasajeros(pasajero);
+					
+					estado = true;
+				}
+			}
+		}
+		
+		if(estado == true) {
+			vuelos.get(posicion).setCosasListas(vuelos.get(posicion).getCosasListas()+1);
+		}
+		return estado;
 	}
 }
