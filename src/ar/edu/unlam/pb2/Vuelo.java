@@ -2,6 +2,8 @@ package ar.edu.unlam.pb2;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vuelo {
 	
@@ -13,6 +15,7 @@ public class Vuelo {
 	private Integer id = 0;
 	private Avion avion;
 	private Integer cosasListas = 0;
+	private List<Personal> personal;
 	
 
 	
@@ -25,7 +28,7 @@ public class Vuelo {
 		this.destino = destino;
 		this.origen = origen;
 		this.id++;
-		
+		this.personal = new ArrayList<>();
 		
 	}
 	
@@ -128,6 +131,16 @@ public class Vuelo {
 		}
 
 		return false;
+	}
+
+	public void agregarPersonalAlVuelo(Personal personal) {
+		this.personal.add(personal);
+		
+	}
+
+	public List getPersonal() {
+		// TODO Auto-generated method stub
+		return personal;
 	}
 	
 	

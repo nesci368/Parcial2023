@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 
 
-
 public class Aerolinea {
 	
 	private String nombreAero;
@@ -259,5 +258,52 @@ public class Aerolinea {
 		
 		return avionEnCondiciones;
 		
+	}
+
+	public Boolean agregarPesonalAlVuelo(Vuelo vuelo) {
+		Vuelo vueloEncontrado = buscarVueloPorId(vuelo.getId());
+		Integer posicion = 0;
+
+		for (Vuelo vueloBuscado : vuelos) {
+			if (vueloBuscado.getId() == vueloEncontrado.getId()) {
+				break;
+			}
+
+			posicion++;
+		}
+		
+		for(Personal personal : personalCompania) {
+			vuelos.get(posicion).agregarPersonalAlVuelo(personal);
+		}
+		
+		if(vuelos.get(posicion).getPersonal()!= null) {
+			vuelos.get(posicion).setCosasListas(vuelos.get(posicion).getCosasListas() + 1);
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+		
+	}
+
+	public Boolean despegar(Vuelo vuelo) {
+		Vuelo vueloEncontrado = buscarVueloPorId(vuelo.getId());
+		Integer posicion = 0;
+		Boolean estado = false;
+		for (Vuelo vueloBuscado : vuelos) {
+			if (vueloBuscado.getId() == vueloEncontrado.getId()) {
+				break;
+			}
+
+			posicion++;
+		}
+		
+		if (vuelos.get(posicion).getCosasListas().equals(3)) {
+			vuelos.get(posicion).setFecha(vuelos.get(posicion).getFecha().plusDays(1));
+			vuelos.get(posicion).setHora(vuelos.get(posicion).getHora().plusHours(2));
+			return true;
+		}
+		return false;
 	}
 }

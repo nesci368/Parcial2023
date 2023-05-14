@@ -11,14 +11,6 @@ import org.junit.Test;
 
 
 
-
-
-
-
-
-
-
-
 public class AerolineaTest {
 
 	
@@ -366,6 +358,73 @@ public class AerolineaTest {
 		assertEquals(cantidadDePersonalDeMantenimiento, aerolinea.getCantidadDePersonalDeMantenimiento());
 		assertTrue(aerolinea.queSeValideQueElAvionTengaElCombustibleNecesarioParaElVuelo(mantenimientoRealizado, cantidadDeGalonesDeCombustible));
 		
+	}
+	
+	@Test
+	public void queSePuedaDespegarSiTieneLosPreparativosDeDespegueListos() {
+		String nombreAerolinea = "Despegar";
+		Aerolinea aerolinea = new Aerolinea(nombreAerolinea);
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+		Integer nroDeAvion = 520;
+		String modelo = "Boing 747";
+		String fabricante = "Airbuss";
+		Integer capacidad = 200;
+		Integer fila = 10;
+		Integer columna = 20;
+		Avion avion = new Avion(nroDeAvion, modelo, fabricante, fila, columna, capacidad);
+		
+		aerolinea.agregarVuelo(vuelo);
+		
+		//1
+		
+		aerolinea.agregarAvion(avion, vuelo.getId());
+		
+		//2
+		Piloto personal1 = new Piloto("Julian", "forza", 585220, 650);
+		Piloto personal2 = new Piloto("Julian", "Hown", 585220, 650);
+
+		Azafata personal3 = new Azafata("Julieta", "Hernandez", 0);
+		Azafata personal4 = new Azafata("Maria", "Hown", 585222);
+		Azafata personal5 = new Azafata("Julieta", "Hown", 585282);
+		Azafata personal6 = new Azafata("Julian", "Hown", 58522);
+
+		Mantenimiento mantenimiento1 = new Mantenimiento("Pablo", "Juarez", 1001);
+		Mantenimiento mantenimiento2 = new Mantenimiento("Leandro", "Pirez", 1005);
+
+		Mantenimiento mantenimiento3 = new Mantenimiento("Ramiro", "Valdez", 1007);
+
+		Mantenimiento mantenimiento4 = new Mantenimiento("Alberto", "Rodriguez", 1100);
+
+		Mantenimiento mantenimiento5 = new Mantenimiento("Diego", "Agudo", 1500);
+
+		aerolinea.agregarPilotosAlVuelo(personal1, personal2, vuelo);
+		aerolinea.agregaAzafatasAlVuelo(personal3, personal4, personal5, personal6, vuelo);
+		aerolinea.agregarPersonalDeMantenimientoALaAerolinea(mantenimiento1, mantenimiento2, mantenimiento3,
+				mantenimiento4, mantenimiento5);
+
+		aerolinea.agregarPesonalAlVuelo(vuelo);
+		
+		// 3
+		ArrayList<Pasajero> pasajeros = new ArrayList<>();
+		for (int i = 0; i <= 20; i++) {
+			pasajeros.add(new Pasajero(true, 1000000.0));
+		}
+
+		for (Pasajero pasajero : pasajeros) {
+			aerolinea.agregarPasajeros(pasajero);
+		}
+
+		aerolinea.comprarVuelo(pasajeros.get(0), vuelo, 1, 1);
+		aerolinea.comprarVuelo(pasajeros.get(1), vuelo, 1, 2);
+
+		aerolinea.subirPasajeros(vuelo);
+		
+		assertTrue(aerolinea.despegar(vuelo));
 	}
 	
 }
