@@ -30,4 +30,20 @@ public class Avion {
 		}
 	}
 
+	public boolean sentarPasajeros(Pasajero pasajero) {
+		// TODO Auto-generated method stub
+		Integer fila = asientos.length;
+		Boolean seAsigno = false;
+		for(int i = 0; i < asientos.length; i++) {
+			for(int j = 0; j < asientos[0].length; j++) {
+				if(asientos[i][j] == null ) {
+					asientos[i][j] = pasajero;
+					seAsigno = true;
+					break;
+				}
+			}
+		}
+		return seAsigno;
+	}
+
 }
