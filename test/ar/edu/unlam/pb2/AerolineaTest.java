@@ -10,6 +10,7 @@ import org.junit.Test;
 
 
 
+
 public class AerolineaTest {
 
 	
@@ -163,5 +164,55 @@ public class AerolineaTest {
 		Integer cantPersonal = 4;
 		
 		assertEquals(cantPersonal, aerolinea.getCantidadDeAzafatas());
+	}
+	
+	@Test
+	public void queSePuedaAsignarPersonalDeMantenimientoAUnVueloYQueSePuedaValidarSegunElNumeroDeLegajoSiEsDeMantenimiento() {
+		
+		String nombre = "Pablo";
+		String apellido = "Juarez";
+		Integer legajo = 1001;
+		Personal personalGeneral;
+		Mantenimiento personal7;
+		Mantenimiento personal8;
+		Mantenimiento personal9;
+		Mantenimiento personal10;
+		Mantenimiento personal11;
+		
+		personal7 = new Mantenimiento("Pablo", "Juarez", 1001);
+		personal8 = new Mantenimiento("Leandro", "Pirez", 1005);
+		personal9 = new Mantenimiento("Ramiro", "Valdez", 1007);
+		personal10 = new Mantenimiento("Alberto", "Rodriguez", 1100);
+		personal11 = new Mantenimiento("Diego", "Agudo",1500);
+		
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		String nombreAero = "Humanos unidos";
+		Aerolinea aerolinea = new Aerolinea(nombreAero);
+		Integer nroDeAvion = 520;
+		String modelo = "Boing 747";
+		String fabricante = "Airbuss";
+		Integer capacidad = 200;
+		Integer fila = 20;
+		Integer columna = 10;
+		Avion avion = new Avion(nroDeAvion, modelo, fabricante, capacidad, fila, columna);
+
+		Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+
+		personalGeneral = new Personal(nombre, apellido, legajo);
+		aerolinea.agregarVuelo(vuelo);
+		aerolinea.agregarAvion(avion, vuelo.getId());
+		
+		aerolinea.agregarPersonalDeMantenimientoALaAerolinea(personal8, personal9, personal7, personal10, personal11);
+		
+		Integer cantidadDePersonalDeMantenimiento = 5;
+		
+		assertEquals(cantidadDePersonalDeMantenimiento, aerolinea.getCantidadDePersonalDeMantenimiento());
+		assertTrue(aerolinea.validarQueSeaPersonalDeMantenimiento(personal7,personal8, personal9, personal10, personal11, vuelo, personalGeneral));
+		
+		
 	}
 }

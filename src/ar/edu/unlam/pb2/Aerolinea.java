@@ -145,4 +145,35 @@ public class Aerolinea {
 	public Integer getCantidadDeAzafatas() {
 		return personalCompania.size();
 	}
+
+	public void agregarPersonalDeMantenimientoALaAerolinea(Mantenimiento personal8, Mantenimiento personal9,
+			Mantenimiento personal7, Mantenimiento personal10, Mantenimiento personal11) {
+		// TODO Auto-generated method stub
+		
+		personalCompania.add(personal7);
+		personalCompania.add(personal8);
+		personalCompania.add(personal9);
+		personalCompania.add(personal10);
+		personalCompania.add(personal11);
+		
+	}
+	
+	public Integer getCantidadDePersonalDeMantenimiento() {
+		return personalCompania.size();
+	}
+
+	public boolean validarQueSeaPersonalDeMantenimiento(Mantenimiento personal7, Mantenimiento personal8,
+			Mantenimiento personal9, Mantenimiento personal10, Mantenimiento personal11, Vuelo vuelo,
+			Personal personalGeneral) {
+		Boolean esPersonalDeMantenimiento = false;
+		for (Personal mantenimiento : personalCompania) {
+			if(personalGeneral.getLegajo() >= 1000 && personalGeneral.getLegajo() <= 2000) {
+				esPersonalDeMantenimiento = true;
+			} else {
+				esPersonalDeMantenimiento = false;
+			}
+		}
+		
+		return esPersonalDeMantenimiento;
+	}
 }
