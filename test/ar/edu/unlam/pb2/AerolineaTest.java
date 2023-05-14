@@ -5,8 +5,11 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.ArrayList;
 
 import org.junit.Test;
+
+
 
 
 
@@ -214,5 +217,37 @@ public class AerolineaTest {
 		assertTrue(aerolinea.validarQueSeaPersonalDeMantenimiento(personal7,personal8, personal9, personal10, personal11, vuelo, personalGeneral));
 		
 		
+	}
+	
+	@Test
+	public void queSiComproUnAsientoEntreFila1YFila2SeaPremium() {
+		
+		ArrayList<Pasajero> pasajeros = new ArrayList<>();
+		String nombreAerolinea = "Despegar";
+		
+		for(int i = 0; i < 20; i++) {
+			pasajeros.add(new Pasajero(true,1000000.0));
+		}
+		
+		Aerolinea aerolinea = new Aerolinea(nombreAerolinea);
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+		Integer nroDeAvion = 520;
+		String modelo = "Boing 747";
+		String fabricante = "Airbuss";
+		Integer capacidad = 200;
+		Integer fila = 10;
+		Integer columna = 20;
+		Avion avion = new Avion(nroDeAvion, modelo, fabricante, fila, columna, capacidad);
+		
+		aerolinea.agregarVuelo(vuelo);
+		aerolinea.agregarAvion(avion, vuelo.getId());
+		
+		assertTrue(aerolinea.comprarVuelo(pasajeros.get(0), vuelo, 1, 1));
+		assertTrue(aerolinea.comprarVuelo(pasajeros.get(0), vuelo, 2, 1));
 	}
 }

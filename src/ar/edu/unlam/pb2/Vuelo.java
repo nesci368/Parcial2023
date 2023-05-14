@@ -119,6 +119,16 @@ public class Vuelo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Boolean asientoDisponible(Pasajero pasajero, Integer fila, Integer columna) {
+		
+		if (this.avion.asientoEstaOcupado(fila,columna, pasajero) == false) {
+
+			return true;
+		}
+
+		return false;
+	}
 	
 	
 	

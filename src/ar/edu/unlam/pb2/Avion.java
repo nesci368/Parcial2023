@@ -9,6 +9,7 @@ public class Avion {
 	private String modelo;
 	private String fabricante;
 	private Integer capacidad;
+	private Pasajero [][] asientos;
 
 	public Avion(Integer nroDeAvion, String modelo, String fabricante, Integer fila, Integer columna,
 			Integer capacidad) {
@@ -17,7 +18,16 @@ public class Avion {
 		this.modelo = modelo;
 		this.fabricante = fabricante;
 		this.capacidad = capacidad;
-		
+		this.asientos = new Pasajero[fila][columna];
+	}
+
+	public boolean asientoEstaOcupado(Integer fila, Integer columna, Pasajero pasajero) {
+
+		if(asientos[fila][columna] != null) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

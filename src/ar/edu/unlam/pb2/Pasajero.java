@@ -8,8 +8,14 @@ public class Pasajero {
 	private Long dni;
 	private String eMail;
 	private Integer contadorDeArrobas = 0, contadorDePuntos = 0;
+	private Boolean pasaporte = false;
+	private Double dineroDisponible;
+	private Boolean comproPremium;
+	private Integer vueloComprado = 0;
 	
 	
+	
+
 	public Pasajero(String nombre, String apellido, Long dni, String eMail) {
 		
 		this.nombre = nombre;
@@ -19,6 +25,30 @@ public class Pasajero {
 		
 	}
 
+	public Pasajero(Boolean pasaporte, Double dineroDisponible) {
+		this.pasaporte = pasaporte;
+		this.dineroDisponible = dineroDisponible;
+	}
+
+	public Boolean getComproPremium() {
+		return comproPremium;
+	}
+
+	public void setComproPremium(Boolean comproPremium) {
+		this.comproPremium = comproPremium;
+	}
+
+	public Double getDineroDisponible() {
+		return dineroDisponible;
+	}
+
+	public void setDineroDisponible(Double dineroDisponible) {
+		this.dineroDisponible = dineroDisponible;
+	}
+	public void setVueloComprado(Integer vueloComprado) {
+		this.vueloComprado  = vueloComprado;
+	}
+	
 	public Boolean validarDatosDelPasajeroParaQuePuedaRegistrarse(Pasajero usuarios) {
 		
 		for (int i = 0; i < eMail.length(); i++) {
