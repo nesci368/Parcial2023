@@ -2,6 +2,10 @@ package ar.edu.unlam.pb2;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Month;
+
 import org.junit.Test;
 
 public class AerolineaTest {
@@ -31,6 +35,20 @@ public class AerolineaTest {
 		aerolinea = new Aerolinea(nombreAero);
 		
 		assertTrue(usuarios.validarDatosDelPasajeroParaQuePuedaRegistrarse(usuarios));
+	}
+	
+	@Test
+	public void queSePuedaCrearUnVuelo() {
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2023, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		
+		Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+				
+		Integer idVuelo = 1;
+		assertEquals(idVuelo, vuelo.getId());
 	}
 	
 }
