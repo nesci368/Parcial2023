@@ -116,4 +116,33 @@ public class Aerolinea {
 		
 		return personalCompania.size();
 	}
+
+	public Boolean validarQueSeaAzafata(Personal personalGeneral) {
+		
+		Boolean esAzafata = false;
+		for (Personal azafata : personalCompania) {
+			if(personalGeneral.getLegajo() >= 500 && personalGeneral.getLegajo() <= 999) {
+				esAzafata = true;
+			} else {
+				esAzafata = false;
+			}
+		}
+		
+		return esAzafata;
+		
+	}
+
+	public void agregaAzafatasAlVuelo(Azafata personal3, Azafata personal4, Azafata personal5, Azafata personal6,
+			Vuelo vuelo) {
+		
+		personalCompania.add(personal3);
+		personalCompania.add(personal4);
+		personalCompania.add(personal5);
+		personalCompania.add(personal6);
+		
+	}
+	
+	public Integer getCantidadDeAzafatas() {
+		return personalCompania.size();
+	}
 }

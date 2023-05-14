@@ -8,6 +8,8 @@ import java.time.Month;
 
 import org.junit.Test;
 
+
+
 public class AerolineaTest {
 
 	
@@ -124,5 +126,42 @@ public class AerolineaTest {
 		
 		
 				
+	}
+	
+	@Test
+	public void quenosepuedanasignarmasde4azafatasAUnVueloYQueSePuedaValidarSegunElNumeroDeLegajoSiEsAzafata() {
+		String nombre ="Julieta";
+		String apellido = "Hernandez";
+		Integer legajo = 501;
+		Personal personalGeneral;
+		Azafata personal3 = new Azafata("Julieta","Hernandez",501);
+		Azafata personal4 = new Azafata("Maria","Hown",502);
+		Azafata personal5 = new Azafata("Julieta","Hown",503);
+		Azafata personal6 = new Azafata("Julian","Hown",504);
+		String origen = "Buenos Aires";
+		String destino = "Cancun";
+		Integer nro = 12;
+		LocalDate fecha = LocalDate.of(2022, Month.MAY, 04);
+		LocalTime hora = LocalTime.of(9, 30);
+		String nombreAero = "Despegar";
+		Aerolinea aerolinea = new Aerolinea(nombreAero);
+		Integer nroDeAvion = 520;
+		String modelo = "Boing 747";
+		String fabricante = "Airbuss";
+		Integer capacidad = 200;
+		Integer fila = 20;
+		Integer columna = 10;
+		Avion avion = new Avion(nroDeAvion, modelo, fabricante, capacidad, fila, columna);
+
+		Vuelo vuelo = new Vuelo(nro, fecha, hora, origen, destino);
+		personalGeneral = new Personal(nombre, apellido, legajo);
+		
+		aerolinea.agregarVuelo(vuelo);
+		aerolinea.agregarAvion(avion, vuelo.getId());
+		aerolinea.validarQueSeaAzafata(personalGeneral);
+		aerolinea.agregaAzafatasAlVuelo(personal3, personal4, personal5, personal6, vuelo);
+		Integer cantPersonal = 4;
+		
+		assertEquals(cantPersonal, aerolinea.getCantidadDeAzafatas());
 	}
 }
