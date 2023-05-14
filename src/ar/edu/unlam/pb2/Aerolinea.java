@@ -246,4 +246,18 @@ public class Aerolinea {
 		}
 		return estado;
 	}
+
+	public Boolean queSeValideQueElAvionTengaElCombustibleNecesarioParaElVuelo(Boolean avionEnCondiciones,
+			Integer cantidadDeGalonesDeCombustible) {
+		
+		
+		if(cantidadDeGalonesDeCombustible > 0) {
+			avionEnCondiciones = true;
+		} else {
+			avionEnCondiciones = false;
+		}
+		
+		return avionEnCondiciones;
+		
+	}
 }

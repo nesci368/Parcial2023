@@ -21,6 +21,12 @@ public class Avion {
 		this.asientos = new Pasajero[fila][columna];
 	}
 
+	public Avion(Integer nroDeAvion2, Integer capacidad2, Integer cantidadDeGalonesDeCombustible,
+			Boolean mantenimientoRealizado) {
+		
+		
+	}
+
 	public boolean asientoEstaOcupado(Integer fila, Integer columna, Pasajero pasajero) {
 
 		if(asientos[fila][columna] != null) {

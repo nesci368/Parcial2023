@@ -17,6 +17,8 @@ import org.junit.Test;
 
 
 
+
+
 public class AerolineaTest {
 
 	
@@ -325,5 +327,45 @@ public class AerolineaTest {
 		
 	}
 	
+	@Test
+	public void queSePuedaValidarQueUnAvionEstaAptoParaVolar() {
+		String nombreAero = "Despegar";
+		String nombre = "Jose";
+		String apellido = "Torres";
+		Integer legajo = 7;
+		
+		Integer nroDeAvion = 520;
+		
+		Integer capacidad = 200;
+		Integer cantidadDeGalonesDeCombustible = 2000;
+		Boolean mantenimientoRealizado = false;
+
+		Aerolinea aerolinea;
+		Mantenimiento personal7;
+		Mantenimiento personal8;
+		Mantenimiento personal9;
+		Mantenimiento personal10;
+		Mantenimiento personal11;
+		Avion avion;
+		
+		aerolinea = new Aerolinea(nombreAero);
+		personal7 = new Mantenimiento(nombre, apellido, legajo);
+		personal8 = new Mantenimiento(nombre, apellido, legajo);
+		personal9 = new Mantenimiento(nombre, apellido, legajo);
+		personal10 = new Mantenimiento(nombre, apellido, legajo);
+		personal11 = new Mantenimiento(nombre, apellido, legajo);
+		avion = new Avion(nroDeAvion,capacidad,cantidadDeGalonesDeCombustible,mantenimientoRealizado);
+		
+		aerolinea.agregarPersonalDeMantenimientoALaAerolinea(personal7, personal8, personal9, personal10, personal11);
+		aerolinea.queSeValideQueElAvionTengaElCombustibleNecesarioParaElVuelo(mantenimientoRealizado,
+				cantidadDeGalonesDeCombustible);
+		
+		
+		Integer cantidadDePersonalDeMantenimiento = 5;
+		
+		assertEquals(cantidadDePersonalDeMantenimiento, aerolinea.getCantidadDePersonalDeMantenimiento());
+		assertTrue(aerolinea.queSeValideQueElAvionTengaElCombustibleNecesarioParaElVuelo(mantenimientoRealizado, cantidadDeGalonesDeCombustible));
+		
+	}
 	
 }
